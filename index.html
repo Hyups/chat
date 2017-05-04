@@ -1,0 +1,91 @@
+<!Doctype html>
+<html lang="ko">
+<head>
+    <title>Chat</title>
+</head>
+<style>
+    * { margin: 0;padding: 0;box-sizing: border-box;font-family:"asd"; }
+    body , html { position: relative; width:100%; height:100%;  }
+    li { list-style:none; }
+    #wrap { width:375px; height:667px; position: absolute; left:0; right:0; top:100px;  margin:auto; box-shadow:0 5px 5px rgba(0,0,0,.3); }
+
+    .pop { width:100%; height:100%; position: absolute; top:0; right:0; background:rgba(0,0,0,.5); z-index:9; }
+    .pop form { width:80%;  height:300px; position: relative; top:100px;  left:0; right:0; margin:auto; }
+    .pop form input  { width:80%; padding:10px; float: left;  }
+    .pop form button { float: left; padding:10px; }
+
+    header { width:100%;  }
+    .states_pop { width:100%; height:15px; background: #283593; }
+    .title_pop { width:`100%; height:50px; background:#3F51B5; }
+    h1 { color:#fff; font-family:Arial; font-weight:400; text-align: center; line-height:50px; font-size:23px; }
+	.profile { width:30px; height:30px; float: left; border-radius:50%; border: 1px solid #aaa; margin-right:5px;}
+	.msg_show { width:100%; height:552px; overflow-y:scroll; }
+	.msg_show::-webkit-scrollbar { width:0.3em; }
+	.msg_show::-webkit-scrollbar-thumb  { background:#ccc; border-radius:15px; }
+	.msg_show ul { width:100%; padding:10px; }
+	.msg_show ul li { width:100%; margin-bottom:5px;  }
+	.msg_show ul li span { color:#333; border-radius:5px;  background:#C5CAE9; padding:5px; display:inline-block; font-size:14px;  position: relative; right:0;}
+    form { width:100%; height:50px; position: absolute; bottom:0; padding:5px; }
+    form .user { width:20%; padding:10px; float: left; border-radius:3px; border: 1px solid #bbb; text-align: center;}
+    form #m { width:65%; padding:10px; float: left; border:1px solid #bbb; border-radius:3px;}
+    form .send { width:15%; float: left; height:100%; background:#3f51b5; border: none; color:#fff;border-radius:3px; }
+</style>
+<body>
+    <div id="wrap">
+    	<div class="pop">
+    		<form action="" class="name_form">
+    			<p>닉네임을 작성해주세요</p>
+    			<input type="text" placeholder="닉네임" class="nname">
+    			<button>완료</button>
+    		</form>
+    	</div>
+    	<header>
+    		<div class="states_pop"></div>
+    		<div class="title_pop">
+    			<h1>Chatting</h1>
+    		</div>
+    	</header>
+    	<div class="msg_show">
+    		<ul id="messages"></ul>
+    	</div>
+        <form action="" class="chat">
+        	<input type="text" class="user" readonly>
+            <input id="m" autocomplete="off" />
+            <button class="send">Send</button>
+        </form>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    $(function() {
+        var socket = io();
+        var names = '';
+        $('.chat').submit(function(e) {
+        	e.preventDefault();
+        	if($("#m").val().trim() < 1){ return false; }
+            socket.emit('chat message', $('#m').val(),$('.user').val());
+            $('#m').val('');
+            return false;
+
+        });
+        $(".name_form").submit(function(e){
+        	var inp = $(".nname").val();
+        	if(inp.trim().length < 1){ return false; }
+        	names = inp;
+        	console.log(names);
+        	$(".pop").hide();
+        	return false;
+        });
+        socket.on('chat message', function(msg  , name) {
+            $('#messages').append('<li><div class="profile">'+names+'</div><span>'+msg+'</span></li>');
+            $(".msg_show").stop().animate({"scrollTop": ($("#messages").innerHeight() - $(".msg_show").innerHeight())},100);
+        });
+        socket.on('change name',function(name){
+        	$(".user").val(name);
+        });
+        
+    });
+    </script>
+</body>
+
+</html>

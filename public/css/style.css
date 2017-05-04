@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "asd";
+}
+
+body,
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+#wrap {
+    width: 375px;
+    height: 667px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+    margin: auto;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
+}
+
+header {
+    width: 100%;
+}
+
+.states_pop {
+    width: 100%;
+    height: 15px;
+    background: #283593;
+}
+
+.title_pop {
+    width: `100%;
+    height: 50px;
+    background: #3F51B5;
+}
+
+h1 {
+    color: #fff;
+    font-family: Arial;
+    font-weight: 400;
+    text-align: center;
+    line-height: 50px;
+    font-size: 23px
+}
+
+.msg_show {
+    width: 100%;
+    height: 552px;
+    overflow-y: scroll;
+}
+
+.msg_show::-webkit-scrollbar {
+    width: 0.3em;
+}
+
+.msg_show::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 15px;
+}
+
+.msg_show ul {
+    width: 100%;
+    padding: 10px;
+}
+
+.msg_show ul li {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.msg_show ul li span {
+    color: #333;
+    border-radius: 5px;
+    background: #FFE00F;
+    padding: 5px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+form {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+}
+
+form #m {
+    width: 85%;
+    padding: 10px;
+    float: left;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+}
+
+form button {
+    width: 14%;
+    float: right;
+    height: 100%;
+    background: #3f51b5;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+}
