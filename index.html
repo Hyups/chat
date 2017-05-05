@@ -1,55 +1,208 @@
 <!Doctype html>
 <html lang="ko">
+
 <head>
-    <title>Chat</title>
+    <title>디지톡</title>
+    <meta name="viewport" content="width=device-width">
 </head>
 <style>
-    * { margin: 0;padding: 0;box-sizing: border-box;font-family:"asd"; }
-    body , html { position: relative; width:100%; height:100%;  }
-    li { list-style:none; }
-    #wrap { width:375px; height:667px; position: absolute; left:0; right:0; top:100px;  margin:auto; box-shadow:0 5px 5px rgba(0,0,0,.3); }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "asd";
+}
 
-    .pop { width:100%; height:100%; position: absolute; top:0; right:0; background:rgba(0,0,0,.5); z-index:9; }
-    .pop form { width:80%;  height:300px; position: relative; top:100px;  left:0; right:0; margin:auto; }
-    .pop form input  { width:80%; padding:10px; float: left;  }
-    .pop form button { float: left; padding:10px; }
+body,
+html {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
-    header { width:100%;  }
-    .states_pop { width:100%; height:15px; background: #283593; }
-    .title_pop { width:`100%; height:50px; background:#3F51B5; }
-    h1 { color:#fff; font-family:Arial; font-weight:400; text-align: center; line-height:50px; font-size:23px; }
-	.profile { width:30px; height:30px; float: left; border-radius:50%; border: 1px solid #aaa; margin-right:5px;}
-	.msg_show { width:100%; height:552px; overflow-y:scroll; }
-	.msg_show::-webkit-scrollbar { width:0.3em; }
-	.msg_show::-webkit-scrollbar-thumb  { background:#ccc; border-radius:15px; }
-	.msg_show ul { width:100%; padding:10px; }
-	.msg_show ul li { width:100%; margin-bottom:5px;  }
-	.msg_show ul li span { color:#333; border-radius:5px;  background:#C5CAE9; padding:5px; display:inline-block; font-size:14px;  position: relative; right:0;}
-    form { width:100%; height:50px; position: absolute; bottom:0; padding:5px; }
-    form .user { width:20%; padding:10px; float: left; border-radius:3px; border: 1px solid #bbb; text-align: center;}
-    form #m { width:65%; padding:10px; float: left; border:1px solid #bbb; border-radius:3px;}
-    form .send { width:15%; float: left; height:100%; background:#3f51b5; border: none; color:#fff;border-radius:3px; }
+li {
+    list-style: none;
+}
+
+#wrap {
+    width: 375px;
+    height: 667px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+    margin: auto;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
+}
+
+.pop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 9;
+}
+
+.pop form {
+    width: 80%;
+    height: 300px;
+    position: relative;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.pop form input {
+    width: 80%;
+    padding: 10px;
+    float: left;
+}
+
+.pop form button {
+    float: left;
+    padding: 10px;
+}
+
+header {
+    width: 100%;
+}
+
+.states_pop {
+    width: 100%;
+    height: 15px;
+    background: #283593;
+}
+
+.title_pop {
+    width: `100%;
+    height: 50px;
+    background: #3F51B5;
+}
+
+h1 {
+    color: #fff;
+    font-family: Arial;
+    font-weight: 400;
+    text-align: center;
+    line-height: 50px;
+    font-size: 23px;
+}
+
+.profile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+    margin-right: 5px;
+}
+
+.msg_show {
+    width: 100%;
+    height: 552px;
+    overflow-y: scroll;
+}
+
+.msg_show::-webkit-scrollbar {
+    width: 0.3em;
+}
+
+.msg_show::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 15px;
+}
+
+.msg_show ul {
+    width: 100%;
+    padding: 10px;
+}
+
+.msg_show ul li {
+    width: 100%;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    color: #398;
+}
+
+.msg_show ul li > span {
+    color: #333;
+    border-radius: 5px;
+    background: #C5CAE9;
+    padding: 5px;
+    display: inline-block;
+    font-size: 14px;
+    float: left;
+}
+
+.chat {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+}
+
+.chat #m {
+    width: 85%;
+    padding: 10px;
+    float: left;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+}
+
+.chat .send {
+    width: 14%;
+    float: right;
+    height: 100%;
+    background: #3f51b5;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+}
+#before { width:100%; height:100%; position: absolute; top:0; left:0; background:rgba(0,0,0,.8); z-index:9; padding:10px 30px;}
+#before p { text-align: center; font-size:25px; color:#fff; padding-bottom:20px; padding-top:100px; }
+#before form { width:100%; height:40px;}
+#before input { width:80%; float: left; padding:10px; border: 1px solid #ddd; border-radius:5px; }
+#before button { width:19%;  height:100%;  float:right; padding:10px; background:#3498db; color:#fff; border: none;  border-radius:5px; }
+
+.ip {
+    color: #000;
+    font-weight: bold;
+}
+
+@media (max-width:480px) {
+    #wrap {
+        position: static;
+        width: 100%;
+        height: 100%;
+    }
+}
 </style>
+
 <body>
     <div id="wrap">
-    	<div class="pop">
-    		<form action="" class="name_form">
-    			<p>닉네임을 작성해주세요</p>
-    			<input type="text" placeholder="닉네임" class="nname">
-    			<button>완료</button>
-    		</form>
-    	</div>
-    	<header>
-    		<div class="states_pop"></div>
-    		<div class="title_pop">
-    			<h1>Chatting</h1>
-    		</div>
-    	</header>
-    	<div class="msg_show">
-    		<ul id="messages"></ul>
-    	</div>
+        <header>
+            <div class="states_pop"></div>
+            <div class="title_pop">
+                <h1>DigiTalk</h1>
+            </div>
+        </header>
+        <div id="before">
+            <p>닉네임을 입력하세요</p>
+            <form action="" class="nick_form">
+            	<input id="nickname" autocomplete="off">
+            	<button id="joinBtn">접속</button>	
+            </form>
+        </div>
+        <div class="msg_show">
+            <ul id="messages"></ul>
+        </div>
         <form action="" class="chat">
-        	<input type="text" class="user" readonly>
             <input id="m" autocomplete="off" />
             <button class="send">Send</button>
         </form>
@@ -60,28 +213,60 @@
     $(function() {
         var socket = io();
         var names = '';
+        $('.nick_form').submit(function(e) {
+			fnNickname(e);
+           	$("#before").slideUp(600);
+            return false;
+        });
+
+        function fnNickname(e) {
+            if ($('#nickname').val().trim() == '') {
+                alert('닉네임을 입력해 주세요');
+                return false;
+            }
+            nickname = $('#nickname').val().trim();
+            socket.emit('join', nickname);
+        }
+
+        function fnUpdateUserList(userList) {
+            $('#userList').text('');
+            for (i = 0; i < userList.length; i++) {
+                $('#userList').append($('<li>').text(userList[i]));
+            };
+        }
+
+        socket.on('join', function(data) {
+            $('#messages').append($('<li class="noti">').text(data.nickname + '님이 입장하셨습니다'));
+            fnUpdateUserList(data.userList);
+            $(".msg_show").stop().animate({
+                "scrollTop": ($("#messages").innerHeight() - $(".msg_show").innerHeight())
+            }, 100);
+        });
+
+        socket.on('left', function(data) {
+            $('#messages').append($('<li class="noti">').text(data.nickname + '님이 퇴장하셨습니다'));
+
+            fnUpdateUserList(data.userList);
+            $(".msg_show").stop().animate({
+                "scrollTop": ($("#messages").innerHeight() - $(".msg_show").innerHeight())
+            }, 100);
+        });
+
         $('.chat').submit(function(e) {
-        	e.preventDefault();
-        	if($("#m").val().trim() < 1){ return false; }
-            socket.emit('chat message', $('#m').val(),$('.user').val());
+            e.preventDefault();
+            if ($("#m").val().trim() < 1) {
+                return false;
+            }
+            socket.emit('chat message', $('#m').val());
             $('#m').val('');
             return false;
 
         });
-        $(".name_form").submit(function(e){
-        	var inp = $(".nname").val();
-        	if(inp.trim().length < 1){ return false; }
-        	names = inp;
-        	console.log(names);
-        	$(".pop").hide();
-        	return false;
-        });
-        socket.on('chat message', function(msg  , name) {
-            $('#messages').append('<li><div class="profile">'+names+'</div><span>'+msg+'</span></li>');
-            $(".msg_show").stop().animate({"scrollTop": ($("#messages").innerHeight() - $(".msg_show").innerHeight())},100);
-        });
-        socket.on('change name',function(name){
-        	$(".user").val(name);
+        socket.on('chat message', function(data) {
+            $('#messages').append('<li><span><span class="ip">' + data.nickname + '</span> : ' + data.msg + '</span></li>');
+            $(".msg_show").stop().animate({
+                "scrollTop": ($("#messages").innerHeight() - $(".msg_show").innerHeight())
+            }, 100);
         });
         
     });
